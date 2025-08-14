@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
+import { ThemeToggle } from "./ThemeToggle";
 import { Home, Info, Phone, MapPin } from "lucide-react";
 
 const Navigation = () => {
@@ -46,9 +47,12 @@ const Navigation = () => {
             </Link>
           </div>
           
-          <Button variant="hero" size="sm" asChild>
-            <Link to="/contatti">Prenota Ora</Link>
-          </Button>
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <Button variant="hero" size="sm" asChild>
+              <Link to="/contatti">Prenota Ora</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
