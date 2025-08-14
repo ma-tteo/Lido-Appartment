@@ -1,17 +1,18 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
-import PricingSection from "@/components/PricingSection";
-import LocationMap from "@/components/LocationMap";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen main-content">
       <Navigation />
       <Hero />
       <Gallery />
-      <PricingSection />
-      <LocationMap />
       
       {/* Footer */}
       <footer className="bg-deep-ocean text-white py-8">

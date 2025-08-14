@@ -37,6 +37,15 @@ const Navigation = () => {
               Dettagli
             </Link>
             <Link 
+              to="/prezzi" 
+              className={`text-sm font-medium transition-colors hover:text-ocean-blue ${
+                location.pathname === "/prezzi" ? "text-ocean-blue" : "text-muted-foreground"
+              }`}
+            >
+              <Info className="inline h-4 w-4 mr-1" />
+              Prezzi
+            </Link>
+            <Link 
               to="/contatti" 
               className={`text-sm font-medium transition-colors hover:text-ocean-blue ${
                 location.pathname === "/contatti" ? "text-ocean-blue" : "text-muted-foreground"

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
   Mail, 
@@ -20,6 +20,10 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,7 +50,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="min-h-screen pt-16">
+    <main className="min-h-screen main-content">
       <Navigation />
       
       {/* Hero Section */}

@@ -76,11 +76,20 @@ All colors MUST be HSL.
     --foreground: var(--pearl-white);
     --card: 215 65% 12%;
     --card-foreground: var(--pearl-white);
+    --popover: 215 65% 12%;
+    --popover-foreground: var(--pearl-white);
     --primary: var(--ocean-blue-light);
+    --primary-foreground: 215 85% 8%;
     --secondary: 215 45% 18%;
+    --secondary-foreground: var(--pearl-white);
     --muted: 215 35% 15%;
+    --muted-foreground: 215 25% 65%;
+    --accent: var(--sand-gold);
+    --accent-foreground: 215 85% 8%;
+    --destructive-foreground: var(--pearl-white);
     --border: 215 45% 20%;
     --input: 215 45% 18%;
+    --ring: var(--ocean-blue-light);
   }
 }
 
@@ -93,6 +102,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
+  }
+  
+  /* Fix for navigation overlay */
+  .main-content {
+    padding-top: 4rem; /* 64px - navigation height */
   }
   
   h1, h2, h3, h4, h5, h6 {

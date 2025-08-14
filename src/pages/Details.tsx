@@ -1,7 +1,9 @@
 import Navigation from "@/components/Navigation";
+import OpenStreetMap from "@/components/OpenStreetMap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { 
   Bed, 
   Bath, 
@@ -15,7 +17,8 @@ import {
   Calendar,
   Clock,
   Users,
-  Home
+  Home,
+  Navigation as NavigationIcon
 } from "lucide-react";
 
 import livingRoom from "@/assets/apartment-living-room.jpg";
@@ -24,8 +27,12 @@ import secondBedroom from "@/assets/apartment-second-bedroom.jpg";
 import bathroom from "@/assets/apartment-bathroom.jpg";
 
 const Details = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <main className="min-h-screen pt-16">
+    <main className="min-h-screen main-content">
       <Navigation />
       
       {/* Hero Section */}
@@ -343,62 +350,109 @@ const Details = () => {
       {/* Location Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-deep-ocean mb-12 text-center">
-            Posizione Strategica
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-ocean mb-4">
+              Posizione e Zona
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Appartamento situato nel centro di Tortoreto Lido, vicino a tutti i servizi
+            </p>
+          </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="elegant-shadow hover-lift">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Map */}
+            <Card className="elegant-shadow">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-ocean-blue" />
-                  Indirizzo
+                  Mappa Interattiva
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm">
-                  <div className="font-medium">Via Giovanni XXIII</div>
-                  <div className="text-muted-foreground">64018 Tortoreto Lido (TE)</div>
-                  <div className="text-muted-foreground">Vicino al sottopasso Via Carducci</div>
-                </div>
+                <OpenStreetMap />
               </CardContent>
             </Card>
 
-            <Card className="elegant-shadow hover-lift">
-              <CardHeader>
-                <CardTitle>Distanze</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>Mare</span>
-                    <span className="font-medium">400m</span>
+            {/* Location Details */}
+            <div className="space-y-6">
+              <Card className="elegant-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <NavigationIcon className="h-5 w-5 text-ocean-blue" />
+                    Indirizzo
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <div className="font-medium text-deep-ocean">Via Giovanni XXIII</div>
+                    <div className="text-muted-foreground">64018 Tortoreto Lido (TE)</div>
+                    <div className="text-muted-foreground">Abruzzo, Italia</div>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Supermercato</span>
-                    <span className="font-medium">200m</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Centro</span>
-                    <span className="font-medium">300m</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            <Card className="elegant-shadow hover-lift">
-              <CardHeader>
-                <CardTitle>Comodità</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div>✓ Zona centrale e ben servita</div>
-                  <div>✓ Parcheggi disponibili</div>
-                  <div>✓ Vicino a ristoranti e bar</div>
-                  <div>✓ Fermata autobus</div>
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="elegant-shadow">
+                <CardHeader>
+                  <CardTitle>Distanze</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🏖️ Mare</span>
+                      <span className="font-medium">400m (5 min a piedi)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🛒 Supermercato</span>
+                      <span className="font-medium">200m (3 min a piedi)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🚗 Sottopasso Via Carducci</span>
+                      <span className="font-medium">100m</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🏛️ Alba Adriatica</span>
+                      <span className="font-medium">5 km</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🏛️ Giulianova</span>
+                      <span className="font-medium">10 km</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">🏛️ San Benedetto del Tronto</span>
+                      <span className="font-medium">12 km</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="elegant-shadow">
+                <CardHeader>
+                  <CardTitle>Servizi Zona</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div className="flex items-center gap-1">
+                      <span>🅿️</span> Parcheggi disponibili
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>🍕</span> Ristoranti
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>☕</span> Bar e caffè
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>🏥</span> Farmacia
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>🏖️</span> Stabilimenti balneari
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>🚌</span> Trasporti pubblici
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
