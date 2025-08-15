@@ -1,31 +1,30 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { MapPin } from 'lucide-react';
 
 const OpenStreetMap = () => {
   // Tortoreto Lido coordinates
-  const position: [number, number] = [42.788, 13.943];
+  const latitude = 42.788;
+  const longitude = 13.943;
+  
+  // OpenStreetMap iframe URL
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.01},${latitude-0.01},${longitude+0.01},${latitude+0.01}&layer=mapnik&marker=${latitude},${longitude}`;
 
   return (
-    <div className="h-64 w-full rounded-lg overflow-hidden">
-      <MapContainer
-        center={position}
-        zoom={15}
+    <div className="h-64 w-full rounded-lg overflow-hidden border">
+      <iframe
+        src={mapUrl}
         className="h-full w-full"
-        zoomControl={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position}>
-          <Popup>
-            <div className="p-2">
-              <strong>Appartamento Tortoreto Lido</strong><br />
-              Via Giovanni XXIII
-            </div>
-          </Popup>
-        </Marker>
-      </MapContainer>
+        style={{ border: 'none' }}
+        title="Mappa di Tortoreto Lido"
+      />
+      <div className="absolute bottom-2 left-2 bg-background/90 backdrop-blur-sm p-2 rounded-md shadow-sm border">
+        <div className="flex items-center gap-2 text-sm">
+          <MapPin className="h-4 w-4 text-primary" />
+          <span className="font-medium">Appartamento Tortoreto Lido</span>
+        </div>
+        <div className="text-xs text-muted-foreground mt-1">
+          Via Giovanni XXIII
+        </div>
+      </div>
     </div>
   );
 };
