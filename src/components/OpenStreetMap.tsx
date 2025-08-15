@@ -9,7 +9,7 @@ const OpenStreetMap = () => {
   const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.01},${latitude-0.01},${longitude+0.01},${latitude+0.01}&layer=mapnik&marker=${latitude},${longitude}`;
 
   return (
-    <div className="h-64 w-full rounded-lg overflow-hidden border">
+    <div className="relative h-64 w-full rounded-lg overflow-hidden border">
       <iframe
         src={mapUrl}
         className="h-full w-full"
