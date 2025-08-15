@@ -1,6 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
+import Reviews from "@/components/Reviews";
+import NearbyAttractions from "@/components/NearbyAttractions";
+import AdvancedBooking from "@/components/AdvancedBooking";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -13,6 +16,9 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Gallery />
+      <NearbyAttractions />
+      <AdvancedBooking />
+      <Reviews />
       
       {/* Footer */}
       <footer className="bg-deep-ocean text-white py-8">

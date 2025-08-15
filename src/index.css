@@ -73,23 +73,23 @@ All colors MUST be HSL.
   .dark {
     /* Dark mode with evening coastal theme */
     --background: 215 85% 8%;
-    --foreground: var(--pearl-white);
+    --foreground: 0 0% 98%;
     --card: 215 65% 12%;
-    --card-foreground: var(--pearl-white);
+    --card-foreground: 0 0% 98%;
     --popover: 215 65% 12%;
-    --popover-foreground: var(--pearl-white);
-    --primary: var(--ocean-blue-light);
+    --popover-foreground: 0 0% 98%;
+    --primary: 205 89% 85%;
     --primary-foreground: 215 85% 8%;
     --secondary: 215 45% 18%;
-    --secondary-foreground: var(--pearl-white);
+    --secondary-foreground: 0 0% 98%;
     --muted: 215 35% 15%;
     --muted-foreground: 215 25% 65%;
-    --accent: var(--sand-gold);
+    --accent: 45 65% 75%;
     --accent-foreground: 215 85% 8%;
-    --destructive-foreground: var(--pearl-white);
+    --destructive-foreground: 0 0% 98%;
     --border: 215 45% 20%;
     --input: 215 45% 18%;
-    --ring: var(--ocean-blue-light);
+    --ring: 205 89% 85%;
   }
 }
 
