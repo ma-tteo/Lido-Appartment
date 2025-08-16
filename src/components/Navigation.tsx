@@ -22,7 +22,7 @@ const Navigation = () => {
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-24">
             <Link to="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
               <MapPin className="h-6 w-6 text-ocean-blue" />
               <span className="font-serif font-semibold text-xl text-foreground">
@@ -31,12 +31,12 @@ const Navigation = () => {
             </Link>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <Link 
                   key={link.to}
                   to={link.to} 
-                  className={`text-sm font-medium transition-colors hover:text-ocean-blue ${
+                  className={`text-base font-medium transition-colors hover:text-ocean-blue ${
                     location.pathname === link.to ? "text-ocean-blue" : "text-muted-foreground"
                   }`}
                 >
@@ -69,7 +69,7 @@ const Navigation = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b md:hidden"
+            className="fixed top-24 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
               {navLinks.map((link) => (
