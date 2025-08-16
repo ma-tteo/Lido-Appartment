@@ -23,13 +23,14 @@ echo ---> Carico le modifiche su GitHub (git push)...
 git push
 echo.
 
+echo ---> Eseguo npm run deploy...
+npm run deploy
+echo.
+
 echo ======================================================
 echo      Fatto! Le modifiche sono su GitHub.
 echo ======================================================
 echo.
-
-echo ---> Avvio del server di sviluppo (npm run dev)...
-npm run dev
 
 rem Mette in pausa lo script per mostrare l'output finale
 pause
