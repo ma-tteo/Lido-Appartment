@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Waves, 
-  TreePine, 
   Castle, 
   Mountain, 
   Camera, 
@@ -10,46 +9,57 @@ import {
   MapPin
 } from "lucide-react";
 
+import img1 from "@/assets/Cosa fare vicino a casa1.png";
+import img2 from "@/assets/Cosa fare vicino a casa2.png";
+import img3 from "@/assets/Cosa fare vicino a casa3.png";
+import img4 from "@/assets/Cosa fare vicino a casa4.png";
+import img5 from "@/assets/Cosa fare vicino a casa5.png";
+import img6 from "@/assets/Cosa fare vicino a casa6.png";
+import img7 from "@/assets/Cosa fare vicino a casa7.png";
+
 const NearbyAttractions = () => {
   const attractions = [
     {
       icon: <Waves className="h-6 w-6" />,
       title: "Spiaggia & Lungomare",
       description: "Lunghi quasi 4 km di sabbia fine, mare pulito e poco profondo: perfetto per famiglie e bimbi. Riceve la Bandiera Blu e Verde per qualità e servizi. L'elegante lungomare alberato e pista ciclabile, parte del Corridoio Verde Adriatico, collega Tortoreto a paesi vicini come Alba Adriatica e Giulianova.",
-      image: "/lovable-uploads/7d13597f-a72b-428d-a17d-bbc3f57b6a5a.png"
+      image: img1
     },
     {
       icon: <Waves className="h-6 w-6" />,
       title: "Divertimento & Relax", 
       description: "Acquapark Onda Blu, scivoli, piscine con onde, aree gioco per tutte le età. Sport acquatici: kayak, wakeboard, surf, giri in barca. Spiagge attrezzate e libere.",
-      image: "/lovable-uploads/ae8f14b2-86ae-40b1-9ac0-3558a0688045.png"
+      image: img2
     },
     {
       icon: <Castle className="h-6 w-6" />,
       title: "Borgo medievale – Tortoreto Alto",
       description: "Storia vera: Torre dell'Orologio, chiese (Madonna della Misericordia del 1348, Sant'Agostino), belvedere con vista mozzafiato su mare e colline. Atmosfera unica: affreschi, archi antichi, suggestioni che spaccano.",
-      image: "/lovable-uploads/aa652193-7622-4337-ac76-e4cb69b06413.png"
+      image: img3
     },
     {
       icon: <Mountain className="h-6 w-6" />,
       title: "Natura & Trekking",
       description: "Gole del Salinello: pareti rocciose, cascate, sentieri immersi nella natura selvaggia. Riserva del Borsacchio: costa tranquilla, verde protetto, nidificazione tartarughe e uccelli. Montagna dei Fiori e Cascata della Morricana: montagna spettacolare, trekking invernale/estivo, panorami incredibili.",
-      image: "/lovable-uploads/cfc52529-83c4-4f76-bc3b-2acd19e7ca98.png"
+      image: img4
     },
     {
       icon: <Camera className="h-6 w-6" />,
       title: "Borghi & Cultura",
-      description: "Civitella del Tronto: fortezza borbonica imponente e borgo storico, ~30 km. Atri: uno dei borghi più belli d'Italia, con centro medievale e paesaggi straordinari. Notaresco, Castelbasso: borghi unici, profumi locali, scorci autentici della vita abruzzese."
+      description: "Civitella del Tronto: fortezza borbonica imponente e borgo storico, ~30 km. Atri: uno dei borghi più belli d'Italia, con centro medievale e paesaggi straordinari. Notaresco, Castelbasso: borghi unici, profumi locali, scorci autentici della vita abruzzese.",
+      image: img5
     },
     {
       icon: <Calendar className="h-6 w-6" />,
       title: "Eventi & Sagre",
-      description: "Palio del Barone: rievocazione medievale ad agosto, costumi, giochi storici, festa pura. Sagre: prodotti tipici, sagra della vongola, aperitivi in spiaggia, serate con dj set."
+      description: "Palio del Barone: rievocazione medievale, costumi, giochi storici, festa pura. Sagre: prodotti tipici, sagra della vongola, aperitivi in spiaggia, serate con dj set.",
+      image: img6
     },
     {
       icon: <Wine className="h-6 w-6" />,
       title: "Enogastronomia & Strada del Vino", 
-      description: "Passeggi nei vigneti della Val Vibrata (Alba Adriatica, Controguerra, Torano...), degustazioni nei locali, tradizione tremenda."
+      description: "Passeggi nei vigneti della Val Vibrata (Alba Adriatica, Controguerra, Torano...), degustazioni nei locali, tradizione tremenda.",
+      image: img7
     }
   ];
 
@@ -58,7 +68,7 @@ const NearbyAttractions = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-ocean mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
               Cosa fare vicino a casa
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -84,7 +94,7 @@ const NearbyAttractions = () => {
                       {attraction.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-serif font-bold text-deep-ocean mb-3">
+                      <h3 className="text-xl font-serif font-bold text-foreground mb-3">
                         {attraction.title}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">
@@ -98,8 +108,8 @@ const NearbyAttractions = () => {
           </div>
 
           {/* Quick Summary */}
-          <div className="mt-12 bg-white/80 backdrop-blur-sm rounded-xl p-8 elegant-shadow">
-            <h3 className="text-2xl font-serif font-bold text-deep-ocean mb-6 text-center">
+          <div className="mt-12 bg-card/80 backdrop-blur-sm rounded-xl p-8 elegant-shadow">
+            <h3 className="text-2xl font-serif font-bold text-foreground mb-6 text-center">
               In sintesi, a Tortoreto Lido trovi:
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">

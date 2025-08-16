@@ -90,6 +90,9 @@ All colors MUST be HSL.
     --border: 215 45% 20%;
     --input: 215 45% 18%;
     --ring: 205 89% 85%;
+
+    /* Gradients */
+    --gradient-shore: linear-gradient(180deg, hsl(var(--secondary)) 0%, hsl(var(--background)) 100%);
   }
 }
 

@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# Tortoreto Lido Apartment - Sito Vetrina
 
-## Project info
+![Screenshot del sito web dell'appartamento a Tortoreto Lido](https://imgur.com/a/WMesP1y)
+*(Suggerimento: Sostituisci questo link con uno screenshot reale della tua homepage!)*
 
-**URL**: https://lovable.dev/projects/02e500df-8969-4fc1-83ca-d4cdd91638e0
+Questo è il repository per il sito web promozionale di un moderno appartamento per vacanze situato nel cuore di Tortoreto Lido (TE), Abruzzo. Il sito è stato costruito per essere veloce, responsive e per facilitare il contatto diretto tramite WhatsApp o telefono.
 
-## How can I edit this code?
+**➡️ Visita il sito live: [https://Matto244.github.io](https://Matto244.github.io)**
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## ✨ Caratteristiche Principali
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/02e500df-8969-4fc1-83ca-d4cdd91638e0) and start prompting.
+- **Design Moderno e Responsive**: Interfaccia utente pulita e completamente navigabile da qualsiasi dispositivo, desktop o mobile.
+- **Galleria Fotografica Interattiva**: Esplora l'appartamento con una galleria di immagini a griglia e visualizzazione a schermo intero.
+- **Sistema di Recensioni Dinamico**: Gli utenti possono lasciare recensioni in tempo reale, gestite tramite un backend **Firebase Firestore**.
+- **Contatto Rapido Fluttuante**: Pulsanti WhatsApp e Telefono sempre visibili per massimizzare le conversioni.
+- **Tema Chiaro/Scuro**: Possibilità per l'utente di scegliere il tema visivo preferito.
+- **Mappa Interattiva**: Una mappa OpenStreetMap integrata per mostrare la posizione esatta dell'appartamento.
+- **Animazioni fluide**: Transizioni ed effetti realizzati con **Framer Motion** per un'esperienza utente più piacevole.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠️ Tecnologie Utilizzate
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Framework Frontend**: [React](https://reactjs.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Linguaggio**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Componenti UI**: [shadcn/ui](https://ui.shadcn.com/)
+- **Routing**: [React Router](https://reactrouter.com/)
+- **Backend (per le recensioni)**: [Firebase Firestore](https://firebase.google.com/products/firestore)
+- **Animazioni**: [Framer Motion](https://www.framer.com/motion/)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🚀 Come Avviare il Progetto in Locale
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Per eseguire una copia del progetto sul tuo computer:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1.  **Clona il repository:**
+    ```bash
+    git clone https://github.com/Matto244/Matto244.github.io.git
+    cd Matto244.github.io
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2.  **Installa le dipendenze:**
+    ```bash
+    npm install
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+3.  **Configura Firebase:**
+    - Crea un file `.env.local` nella cartella principale.
+    - Inserisci le tue credenziali Firebase come mostrato nel file `.env.example` (se presente) o seguendo la struttura `VITE_FIREBASE_*`.
+
+4.  **Avvia il server di sviluppo:**
+    ```bash
+    npm run dev
+    ```
+    Il sito sarà visibile su `http://localhost:5173` (o la porta indicata nel terminale).
+
+---
+
+## 📦 Deployment
+
+Il sito è configurato per essere pubblicato su GitHub Pages con un singolo comando:
+
+```bash
+npm run deploy
 ```
+Questo comando esegue il build del progetto nella cartella `dist` e successivamente la pubblica sul branch `gh-pages`.
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🏷️ Argomenti per GitHub (Topics)
 
-**Use GitHub Codespaces**
+Per migliorare la visibilità del tuo repository su GitHub, vai sulla pagina principale del tuo repo, clicca sull'icona a forma di ingranaggio "Manage topics" e aggiungi questi "hashtags":
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/02e500df-8969-4fc1-83ca-d4cdd91638e0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+`react` `vite` `typescript` `tailwind-css` `firebase` `firestore` `portfolio-project` `vacation-rental` `website-showcase` `responsive-design` `shadcn-ui` `framer-motion` `tortoreto` `abruzzo`

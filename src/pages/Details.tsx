@@ -21,10 +21,10 @@ import {
   Navigation as NavigationIcon
 } from "lucide-react";
 
-import livingRoom from "@/assets/apartment-living-room.jpg";
-import bedroom from "@/assets/apartment-bedroom.jpg";
-import secondBedroom from "@/assets/apartment-second-bedroom.jpg";
-import bathroom from "@/assets/apartment-bathroom.jpg";
+import livingRoom from "@/assets/Galleria Fotografica1.JPG";
+import bedroom from "@/assets/Galleria Fotografica2.jpg";
+import secondBedroom from "@/assets/Galleria Fotografica3.JPG";
+import bathroom from "@/assets/Galleria Fotografica4.JPG";
 
 const Details = () => {
   useEffect(() => {
@@ -32,21 +32,21 @@ const Details = () => {
   }, []);
 
   return (
-    <main className="min-h-screen main-content">
+    <main className="min-h-screen main-content bg-background">
       <Navigation />
       
       {/* Hero Section */}
       <section className="py-16 bg-gradient-shore">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-deep-ocean mb-6">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
               Dettagli Appartamento
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Tutte le informazioni sul nostro moderno appartamento a Tortoreto Lido
             </p>
             <Button variant="hero" size="lg" asChild>
-              <Link to="/contatti">Prenota Ora - 550€</Link>
+              <Link to="/contatti">Contattaci</Link>
             </Button>
           </div>
         </div>
@@ -57,7 +57,7 @@ const Details = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-serif font-bold text-deep-ocean mb-6">
+              <h2 className="text-3xl font-serif font-bold text-foreground mb-6">
                 Panoramica Appartamento
               </h2>
               
@@ -118,7 +118,7 @@ const Details = () => {
       {/* Room Details */}
       <section className="py-16 bg-sand-warm/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-deep-ocean mb-12 text-center">
+          <h2 className="text-3xl font-serif font-bold text-foreground mb-12 text-center">
             Descrizione Ambienti
           </h2>
 
@@ -137,7 +137,6 @@ const Details = () => {
                   <li>• Lavastoviglie</li>
                   <li>• Frigorifero</li>
                   <li>• Piano cottura</li>
-                  <li>• Zona living confortevole</li>
                   <li>• Tavolo da pranzo</li>
                 </ul>
               </CardContent>
@@ -157,7 +156,6 @@ const Details = () => {
                   <li>• Armadio spazioso</li>
                   <li>• Accesso al balcone</li>
                   <li>• Finestre luminose</li>
-                  <li>• Arredamento moderno</li>
                 </ul>
               </CardContent>
             </Card>
@@ -176,7 +174,6 @@ const Details = () => {
                   <li>• Armadio</li>
                   <li>• Finestra luminosa</li>
                   <li>• Ambiente accogliente</li>
-                  <li>• Vicina al bagno</li>
                 </ul>
               </CardContent>
             </Card>
@@ -190,7 +187,7 @@ const Details = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Bagno completo moderno</li>
+                  <li>• Bagno completo</li>
                   <li>• Doccia</li>
                   <li>• Lavatrice</li>
                   <li>• Balcone perimetrale</li>
@@ -206,7 +203,7 @@ const Details = () => {
       {/* Amenities */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-deep-ocean mb-12 text-center">
+          <h2 className="text-3xl font-serif font-bold text-foreground mb-12 text-center">
             Servizi e Dotazioni
           </h2>
 
@@ -265,66 +262,18 @@ const Details = () => {
       {/* Check-in/out Rules */}
       <section className="py-16 bg-gradient-shore">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif font-bold text-deep-ocean mb-12 text-center">
-            Informazioni Check-in/Check-out
+          <h2 className="text-3xl font-serif font-bold text-foreground mb-12 text-center">
+            Informazioni sul Soggiorno
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="elegant-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-green-700">
-                  <Calendar className="h-5 w-5" />
-                  Check-in
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <div className="font-medium flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      Sabato 23 Agosto 2025
-                    </div>
-                    <div className="text-sm text-muted-foreground">Dalle ore 15:00 in poi</div>
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Vi aspettiamo per la consegna delle chiavi e una breve presentazione dell'appartamento.
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="elegant-shadow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-red-700">
-                  <Calendar className="h-5 w-5" />
-                  Check-out
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <div className="font-medium flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      Sabato 31 Agosto 2025
-                    </div>
-                    <div className="text-sm text-muted-foreground">Entro le ore 10:00</div>
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Riconsegna delle chiavi e breve controllo dell'appartamento.
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="mt-8 max-w-4xl mx-auto elegant-shadow">
+          <Card className="max-w-4xl mx-auto elegant-shadow">
             <CardHeader>
               <CardTitle className="text-center">Note Importanti</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-deep-ocean mb-2">Da Portare</h4>
+                  <h4 className="font-semibold text-foreground mb-2">Da Portare</h4>
                   <ul className="space-y-1 text-sm text-muted-foreground">
                     <li>• Lenzuola e federe</li>
                     <li>• Asciugamani da bagno</li>
@@ -333,7 +282,7 @@ const Details = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-deep-ocean mb-2">Già Presente</h4>
+                  <h4 className="font-semibold text-foreground mb-2">Già Presente</h4>
                   <ul className="space-y-1 text-sm text-muted-foreground">
                     <li>• Tutto l'occorrente per cucina</li>
                     <li>• Elettrodomestici funzionanti</li>
@@ -351,7 +300,7 @@ const Details = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-ocean mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
               Posizione e Zona
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -384,7 +333,7 @@ const Details = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <div className="font-medium text-deep-ocean">Via Giovanni XXIII</div>
+                    <div className="font-medium text-foreground">Via Giovanni XXIII</div>
                     <div className="text-muted-foreground">64018 Tortoreto Lido (TE)</div>
                     <div className="text-muted-foreground">Abruzzo, Italia</div>
                   </div>
@@ -458,20 +407,20 @@ const Details = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-deep-ocean text-white">
+      <section className="py-16 bg-secondary text-secondary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif font-bold mb-4">
-            Prenota le Tue Vacanze
+            Vivi le Tue Vacanze a Tortoreto
           </h2>
-          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-secondary-foreground/80 mb-8 max-w-2xl mx-auto">
             Non perdere l'opportunità di trascorrere una fantastica settimana a Tortoreto Lido. 
-            Il periodo 23-31 Agosto è l'unico disponibile per l'estate 2025.
+            Contattaci per scoprire le disponibilità.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/contatti">Prenota Ora - 550€</Link>
+              <Link to="/contatti">Contattaci Ora</Link>
             </Button>
-            <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-deep-ocean" asChild>
+            <Button variant="outline" size="xl" className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary" asChild>
               <Link to="/">Torna alla Home</Link>
             </Button>
           </div>

@@ -3,12 +3,12 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-import livingRoom from "@/assets/apartment-living-room.jpg";
-import bedroom from "@/assets/apartment-bedroom.jpg";
-import secondBedroom from "@/assets/apartment-second-bedroom.jpg";
-import bathroom from "@/assets/apartment-bathroom.jpg";
-import balconyView from "@/assets/apartment-balcony-view.jpg";
-import beachView from "@/assets/tortoreto-beach-hero.jpg";
+import livingRoom from "@/assets/Galleria Fotografica1.JPG";
+import bedroom from "@/assets/Galleria Fotografica2.jpg";
+import secondBedroom from "@/assets/Galleria Fotografica3.JPG";
+import bathroom from "@/assets/Galleria Fotografica4.JPG";
+import balconyView from "@/assets/Galleria Fotografica5.JPG";
+import beachView from "@/assets/Galleria Fotografica6.JPG";
 
 const images = [
   { src: livingRoom, alt: "Soggiorno con cucina attrezzata", title: "Soggiorno" },
@@ -35,7 +35,7 @@ const Gallery = () => {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-ocean mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
             Galleria Fotografica
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -60,13 +60,7 @@ const Gallery = () => {
                     alt={image.alt}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-end">
-                    <div className="p-4">
-                      <span className="text-white font-medium text-sm bg-black/50 px-2 py-1 rounded">
-                        {image.title}
-                      </span>
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300"></div>
                 </div>
               </DialogTrigger>
               
@@ -106,13 +100,6 @@ const Gallery = () => {
                   >
                     <X className="h-6 w-6" />
                   </Button>
-                  
-                  {/* Image title */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white text-xl font-medium bg-black/50 px-4 py-2 rounded">
-                      {image.title}
-                    </h3>
-                  </div>
                   
                   {/* Image counter */}
                   <div className="absolute top-4 left-4">

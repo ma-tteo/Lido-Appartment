@@ -1,232 +1,248 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Star, MessageCircle, Loader2, Send } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Star, User, Calendar, MessageSquare } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-// import { supabase } from "@/integrations/supabase/client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, query, where, getDocs, serverTimestamp, orderBy } from "firebase/firestore";
+import { useToast } from "@/components/ui/use-toast";
 
+// Define the structure of a review
 interface Review {
   id: string;
   name: string;
   rating: number;
   comment: string;
-  date: string;
-  stay_period?: string;
+  createdAt: Date;
 }
 
+// Validation schema for the review form
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Il nome deve essere di almeno 2 caratteri." }).max(50),
+  rating: z.coerce.number().min(1, { message: "Seleziona una valutazione." }).max(5),
+  comment: z.string().min(10, { message: "Il commento deve essere di almeno 10 caratteri." }).max(500),
+  improvement: z.string().max(500).optional(), // Private feedback field
+});
+
 const Reviews = () => {
-  const [reviews, setReviews] = useState<Review[]>([
-    {
-      id: "1",
-      name: "Marco R.",
-      rating: 5,
-      comment: "Appartamento fantastico, posizione perfetta a 400m dalla spiaggia. Cucina super attrezzata e balcone spazioso. Tortoreto Lido è una perla, mare pulitissimo!",
-      date: "2024-08-15",
-      stay_period: "Agosto 2024"
-    },
-    {
-      id: "2", 
-      name: "Francesca M.",
-      rating: 5,
-      comment: "Vacanza meravigliosa! L'appartamento ha tutto quello che serve, molto pulito e accogliente. La zona è tranquilla e la spiaggia vicinissima. Consigliatissimo!",
-      date: "2024-07-22",
-      stay_period: "Luglio 2024"
-    },
-    {
-      id: "3",
-      name: "Alessandro T.",
-      rating: 4,
-      comment: "Ottimo appartamento per famiglie, due camere comode e balcone grande. Parcheggio facile da trovare. Mare bellissimo e spiagge ben attrezzate.",
-      date: "2024-06-18",
-      stay_period: "Giugno 2024"
-    }
-  ]);
-
-  const [showForm, setShowForm] = useState(false);
-  const [newReview, setNewReview] = useState({
-    name: '',
-    rating: 5,
-    comment: '',
-    stay_period: ''
-  });
-
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleSubmitReview = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Add to local state for demo
-    const newId = Date.now().toString();
-    setReviews(prev => [{
-      id: newId,
-      name: newReview.name,
-      rating: newReview.rating,
-      comment: newReview.comment,
-      date: new Date().toISOString().split('T')[0],
-      stay_period: newReview.stay_period
-    }, ...prev]);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      rating: 0,
+      comment: "",
+      improvement: "",
+    },
+  });
 
-    setNewReview({ name: '', rating: 5, comment: '', stay_period: '' });
-    setShowForm(false);
-    
-    toast({
-      title: "Recensione pubblicata!",
-      description: "Grazie per aver condiviso la tua esperienza.",
-    });
-  };
+  // Fetch approved reviews from Firestore
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsCollection = collection(db, "reviews");
+        const q = query(reviewsCollection, where("status", "==", "approved"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        const fetchedReviews = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+          createdAt: doc.data().createdAt.toDate(),
+        })) as Review[];
+        setReviews(fetchedReviews);
+      } catch (err) {
+        console.error(err);
+        setError("Impossibile caricare le recensioni. Riprova più tardi.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
+    fetchReviews();
+  }, []);
 
-  const renderStars = (rating: number, interactive = false, onRatingChange?: (rating: number) => void) => {
-    return (
-      <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            className={`h-5 w-5 ${
-              star <= rating
-                ? "fill-yellow-400 text-yellow-400"
-                : "text-gray-300"
-            } ${interactive ? "cursor-pointer hover:text-yellow-400" : ""}`}
-            onClick={interactive && onRatingChange ? () => onRatingChange(star) : undefined}
-          />
-        ))}
-      </div>
-    );
+  // Handle form submission
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await addDoc(collection(db, "reviews"), {
+        name: values.name,
+        rating: values.rating,
+        comment: values.comment,
+        improvement: values.improvement, // Save the private feedback
+        status: "approved",
+        createdAt: serverTimestamp(),
+      });
+      
+      toast({
+        title: "Recensione Inviata!",
+        description: "Grazie per aver condiviso la tua esperienza.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      toast({
+        title: "Errore",
+        description: "Non è stato possibile inviare la recensione. Riprova.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
-    <section className="py-16 bg-sand-warm/20">
+    <section className="py-16 bg-sand-warm/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-ocean mb-4">
-              Recensioni degli Ospiti
-            </h2>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="flex items-center gap-2">
-                {renderStars(Math.round(averageRating))}
-                <span className="text-2xl font-bold text-deep-ocean">
-                  {averageRating.toFixed(1)}
-                </span>
-              </div>
-              <div className="text-muted-foreground">
-                ({reviews.length} recensioni)
-              </div>
-            </div>
-            <Button 
-              variant="hero" 
-              onClick={() => setShowForm(!showForm)}
-              className="mb-8"
-            >
-              <MessageSquare className="h-4 w-4 mr-2" />
-              Scrivi una Recensione
-            </Button>
-          </div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+            Dicono di Noi
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Leggi le esperienze dei nostri ospiti e lascia la tua recensione.
+          </p>
+        </div>
 
-          {/* New Review Form */}
-          {showForm && (
-            <Card className="mb-8 elegant-shadow">
-              <CardHeader>
-                <CardTitle>Condividi la tua esperienza</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmitReview} className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="reviewName">Nome *</Label>
-                      <Input
-                        id="reviewName"
-                        value={newReview.name}
-                        onChange={(e) => setNewReview(prev => ({ ...prev, name: e.target.value }))}
-                        placeholder="Il tuo nome"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="stayPeriod">Periodo soggiorno</Label>
-                      <Input
-                        id="stayPeriod"
-                        value={newReview.stay_period}
-                        onChange={(e) => setNewReview(prev => ({ ...prev, stay_period: e.target.value }))}
-                        placeholder="es. Agosto 2024"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label>Valutazione *</Label>
-                    <div className="mt-2">
-                      {renderStars(newReview.rating, true, (rating) => 
-                        setNewReview(prev => ({ ...prev, rating }))
-                      )}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="reviewComment">Commento *</Label>
-                    <Textarea
-                      id="reviewComment"
-                      value={newReview.comment}
-                      onChange={(e) => setNewReview(prev => ({ ...prev, comment: e.target.value }))}
-                      placeholder="Racconta la tua esperienza..."
-                      rows={4}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="flex gap-2">
-                    <Button type="submit" variant="hero">
-                      Pubblica Recensione
-                    </Button>
-                    <Button type="button" variant="outline" onClick={() => setShowForm(false)}>
-                      Annulla
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
-          )}
-
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Reviews List */}
-          <div className="grid gap-6">
+          <div className="space-y-6">
+            <h3 className="text-2xl font-serif font-bold text-foreground mb-4">Recensioni Recenti</h3>
+            {isLoading && (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="h-8 w-8 animate-spin text-ocean-blue" />
+                <p className="ml-2">Caricamento recensioni...</p>
+              </div>
+            )}
+            {error && <p className="text-destructive">{error}</p>}
+            {!isLoading && !error && reviews.length === 0 && (
+              <p className="text-muted-foreground">Non ci sono ancora recensioni. Sii il primo a lasciarne una!</p>
+            )}
             {reviews.map((review) => (
-              <Card key={review.id} className="elegant-shadow hover-lift">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-ocean-blue/10 rounded-full flex items-center justify-center">
-                        <User className="h-6 w-6 text-ocean-blue" />
+              <Card key={review.id} className="elegant-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>{review.name}</CardTitle>
+                      <div className="flex items-center mt-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-5 w-5 ${i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+                          />
+                        ))}
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div>
-                          <h3 className="font-semibold text-deep-ocean">{review.name}</h3>
-                          {review.stay_period && (
-                            <p className="text-sm text-muted-foreground">{review.stay_period}</p>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {renderStars(review.rating)}
-                          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                            <Calendar className="h-4 w-4" />
-                            {new Date(review.date).toLocaleDateString('it-IT')}
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {review.comment}
-                      </p>
-                    </div>
+                    <span className="text-xs text-muted-foreground">{review.createdAt.toLocaleDateString("it-IT")}</span>
                   </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground italic">"{review.comment}"</p>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Review Form */}
+          <div>
+            <Card className="elegant-shadow">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageCircle className="h-6 w-6" />
+                  Lascia la Tua Recensione
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Il Tuo Nome</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Mario Rossi" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="rating"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Valutazione</FormLabel>
+                          <FormControl>
+                            <div className="flex items-center gap-1">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <Star
+                                  key={star}
+                                  className={`h-8 w-8 cursor-pointer transition-colors ${
+                                    star <= (field.value || 0)
+                                      ? "text-yellow-400 fill-yellow-400"
+                                      : "text-gray-300 hover:text-yellow-300"
+                                  }`}
+                                  onClick={() => field.onChange(star)}
+                                />
+                              ))}
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="comment"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Commento Pubblico</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Come è stata la tua esperienza?"
+                              className="resize-none"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="improvement"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Cosa potremmo migliorare? (Privato)</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Qualsiasi suggerimento è ben accetto! Questo campo non sarà visibile pubblicamente."
+                              className="resize-none"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button type="submit" disabled={form.formState.isSubmitting} className="w-full">
+                      {form.formState.isSubmitting ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <Send className="mr-2 h-4 w-4" />
+                      )}
+                      Invia Recensione
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
