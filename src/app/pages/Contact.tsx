@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui
 import { Button } from "@/shared/components/ui/button";
 import { useEffect } from "react";
 import { Phone, MessageSquare } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   useEffect(() => {
@@ -14,6 +15,10 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen main-content bg-background">
+      <Helmet>
+        <title>Contatti - Appartamento Tortoreto Lido</title>
+        <meta name="description" content="Contattaci via telefono o WhatsApp per informazioni e prenotazioni. Risposta rapida garantita per le tue vacanze a Tortoreto." />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}

@@ -4,6 +4,7 @@ import Gallery from "@/features/gallery/components/Gallery";
 import Reviews from "@/features/reviews/components/Reviews";
 import NearbyAttractions from "@/features/landing/components/NearbyAttractions";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Index = () => {
   useEffect(() => {
@@ -12,6 +13,10 @@ const Index = () => {
 
   return (
     <main className="min-h-screen main-content bg-background">
+      <Helmet>
+        <title>Appartamento Tortoreto Lido - Affitto Estivo a 400m dal Mare</title>
+        <meta name="description" content="Affitta un moderno appartamento a Tortoreto Lido per le tue vacanze estive. 4 posti letto, comfort e posizione strategica a soli 5 minuti a piedi dalla spiaggia." />
+      </Helmet>
       <Navigation />
       <Hero />
       <Gallery />

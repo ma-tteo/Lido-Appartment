@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/shared/components/Navigation";
 import OpenStreetMap from "@/shared/components/OpenStreetMap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
@@ -21,18 +22,65 @@ import {
   Navigation as NavigationIcon
 } from "lucide-react";
 
-import livingRoom from "@/assets/Galleria Fotografica1.JPG";
-import bedroom from "@/assets/Galleria Fotografica2.jpg";
-import secondBedroom from "@/assets/Galleria Fotografica3.JPG";
-import bathroom from "@/assets/Galleria Fotografica4.JPG";
+import livingRoom from "@/assets/Galleria Fotografica1.webp";
+import bedroom from "@/assets/Galleria Fotografica2.webp";
+import secondBedroom from "@/assets/Galleria Fotografica3.webp";
+import bathroom from "@/assets/Galleria Fotografica4.webp";
 
 const Details = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Structured data for SEO
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "VacationRental",
+    "name": "Appartamento Tortoreto Lido",
+    "description": "Moderno appartamento per vacanze a Tortoreto Lido, a 400m dal mare. Dispone di 2 camere da letto, 4 posti letto, cucina attrezzata e tutti i comfort.",
+    "image": [
+      "https://www.vostrosito.it/assets/Galleria Fotografica1.webp",
+      "https://www.vostrosito.it/assets/Galleria Fotografica2.webp",
+      "https://www.vostrosito.it/assets/Galleria Fotografica3.webp"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Giovanni XXIII",
+      "addressLocality": "Tortoreto Lido",
+      "addressRegion": "TE",
+      "postalCode": "64018",
+      "addressCountry": "IT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 42.788,
+      "longitude": 13.943
+    },
+    "telephone": "+393208581998",
+    "numberOfRooms": 2,
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "maxValue": 4,
+      "unitText": "persone"
+    },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Lavatrice" },
+      { "@type": "LocationFeatureSpecification", "name": "Lavastoviglie" },
+      { "@type": "LocationFeatureSpecification", "name": "Cucina attrezzata" },
+      { "@type": "LocationFeatureSpecification", "name": "Ascensore" },
+      { "@type": "LocationFeatureSpecification", "name": "Vicino alla spiaggia" }
+    ]
+  };
+
   return (
     <main className="min-h-screen main-content bg-background">
+      <Helmet>
+        <title>Dettagli Appartamento - Tortoreto Lido</title>
+        <meta name="description" content="Scopri tutti i dettagli del nostro appartamento a Tortoreto: 2 camere, 4 posti letto, cucina attrezzata, lavatrice, e posizione centrale a 400m dal mare." />
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}

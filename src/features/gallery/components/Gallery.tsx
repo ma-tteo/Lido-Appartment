@@ -3,12 +3,12 @@ import { Dialog, DialogContent, DialogTrigger } from "@/shared/components/ui/dia
 import { Button } from "@/shared/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-import livingRoom from "@/assets/Galleria Fotografica1.JPG";
-import bedroom from "@/assets/Galleria Fotografica2.jpg";
-import secondBedroom from "@/assets/Galleria Fotografica3.JPG";
-import bathroom from "@/assets/Galleria Fotografica4.JPG";
-import balconyView from "@/assets/Galleria Fotografica5.JPG";
-import beachView from "@/assets/Galleria Fotografica6.JPG";
+import livingRoom from "@/assets/Galleria Fotografica1.webp";
+import bedroom from "@/assets/Galleria Fotografica2.webp";
+import secondBedroom from "@/assets/Galleria Fotografica3.webp";
+import bathroom from "@/assets/Galleria Fotografica4.webp";
+import balconyView from "@/assets/Galleria Fotografica5.webp";
+import beachView from "@/assets/Galleria Fotografica6.webp";
 
 const images = [
   { src: livingRoom, alt: "Soggiorno con cucina attrezzata", title: "Soggiorno" },

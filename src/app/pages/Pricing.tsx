@@ -4,6 +4,7 @@ import { Button } from "@/shared/components/ui/button";
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Pricing = () => {
   useEffect(() => {
@@ -12,6 +13,10 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen main-content bg-background">
+      <Helmet>
+        <title>Prezzi e Disponibilità - Appartamento Tortoreto Lido</title>
+        <meta name="description" content="Contattaci per ricevere un preventivo personalizzato e verificare la disponibilità del nostro appartamento a Tortoreto Lido per le tue vacanze." />
+      </Helmet>
       <Navigation />
       
       {/* Hero Section */}

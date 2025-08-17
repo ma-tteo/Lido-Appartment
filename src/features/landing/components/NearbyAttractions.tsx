@@ -9,13 +9,13 @@ import {
   MapPin
 } from "lucide-react";
 
-import img1 from "@/assets/Cosa fare vicino a casa1.png";
-import img2 from "@/assets/Cosa fare vicino a casa2.png";
-import img3 from "@/assets/Cosa fare vicino a casa3.png";
-import img4 from "@/assets/Cosa fare vicino a casa4.png";
-import img5 from "@/assets/Cosa fare vicino a casa5.png";
-import img6 from "@/assets/Cosa fare vicino a casa6.png";
-import img7 from "@/assets/Cosa fare vicino a casa7.png";
+import img1 from "@/assets/Cosa fare vicino a casa1.webp";
+import img2 from "@/assets/Cosa fare vicino a casa2.webp";
+import img3 from "@/assets/Cosa fare vicino a casa3.webp";
+import img4 from "@/assets/Cosa fare vicino a casa4.webp";
+import img5 from "@/assets/Cosa fare vicino a casa5.webp";
+import img6 from "@/assets/Cosa fare vicino a casa6.webp";
+import img7 from "@/assets/Cosa fare vicino a casa7.webp";
 
 const NearbyAttractions = () => {
   const attractions = [
