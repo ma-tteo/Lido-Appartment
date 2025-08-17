@@ -1,7 +1,6 @@
 # Tortoreto Lido Apartment - Sito Vetrina
 
-![Screenshot del sito web dell'appartamento a Tortoreto Lido](https://imgur.com/a/WMesP1y)
-*(Suggerimento: Sostituisci questo link con uno screenshot reale della tua homepage!)*
+![Screenshot del sito web dell'appartamento a Tortoreto Lido](https://i.imgur.com/IFtDT8y.jpeg)
 
 Questo è il repository per il sito web promozionale di un moderno appartamento per vacanze situato nel cuore di Tortoreto Lido (TE), Abruzzo. Il sito è stato costruito per essere veloce, responsive e per facilitare il contatto diretto tramite WhatsApp o telefono.
 
