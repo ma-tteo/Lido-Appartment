@@ -1,6 +1,6 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/shared/components/ui/toaster";
+import { Toaster as Sonner } from "@/shared/components/ui/sonner";
+import { TooltipProvider } from "@/shared/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
@@ -9,7 +9,7 @@ import Details from "./pages/Details";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
-import FloatingButtons from "./components/FloatingButtons";
+import FloatingButtons from "@/shared/components/FloatingButtons";
 
 const queryClient = new QueryClient();
 

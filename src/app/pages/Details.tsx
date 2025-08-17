@@ -1,7 +1,7 @@
-import Navigation from "@/components/Navigation";
-import OpenStreetMap from "@/components/OpenStreetMap";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Navigation from "@/shared/components/Navigation";
+import OpenStreetMap from "@/shared/components/OpenStreetMap";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
+import { Button } from "@/shared/components/ui/button";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { 

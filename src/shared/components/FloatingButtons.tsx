@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/components/ui/button';
 import { Phone, MessageSquare, X, Plus } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 

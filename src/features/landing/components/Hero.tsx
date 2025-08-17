@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "@/shared/components/ui/button";
 import { Link } from "react-router-dom";
 import { MapPin, Users } from "lucide-react";
 import apartmentHero from "@/assets/apartment-living-room.jpg";

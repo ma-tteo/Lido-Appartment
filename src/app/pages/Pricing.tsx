@@ -1,6 +1,6 @@
-import Navigation from "@/components/Navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Navigation from "@/shared/components/Navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
+import { Button } from "@/shared/components/ui/button";
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import { useEffect } from "react";

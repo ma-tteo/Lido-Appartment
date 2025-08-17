@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { Star, MessageCircle, Loader2, Send } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/shared/components/ui/card";
+import { Button } from "@/shared/components/ui/button";
+import { Input } from "@/shared/components/ui/input";
+import { Textarea } from "@/shared/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { db } from "@/lib/firebase";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form";
+import { db } from "@/shared/lib/firebase";
 import { collection, addDoc, query, where, getDocs, serverTimestamp, orderBy } from "firebase/firestore";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/shared/components/ui/use-toast";
 
 // Define the structure of a review
 interface Review {

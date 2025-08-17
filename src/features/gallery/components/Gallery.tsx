@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/shared/components/ui/dialog";
+import { Button } from "@/shared/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 import livingRoom from "@/assets/Galleria Fotografica1.JPG";

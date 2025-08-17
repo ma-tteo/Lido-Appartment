@@ -1,8 +1,8 @@
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import Gallery from "@/components/Gallery";
-import Reviews from "@/components/Reviews";
-import NearbyAttractions from "@/components/NearbyAttractions";
+import Navigation from "@/shared/components/Navigation";
+import Hero from "@/features/landing/components/Hero";
+import Gallery from "@/features/gallery/components/Gallery";
+import Reviews from "@/features/reviews/components/Reviews";
+import NearbyAttractions from "@/features/landing/components/NearbyAttractions";
 import { useEffect } from "react";
 
 const Index = () => {
