@@ -38,7 +38,7 @@ if errorlevel 1 (
     echo.
     echo ERRORE: il pull/rebase ha fallito.
     echo Risolvi i conflitti manualmente, poi esegui:
-    echo   git add <file risolti>
+    echo   git add [file_risolti]
     echo   git rebase --continue
     echo Se vuoi annullare il rebase: git rebase --abort
     pause
